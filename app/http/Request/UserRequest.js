@@ -1,6 +1,6 @@
 import { baseRequest } from "./BaseRequest.js";
 import { body, query } from 'express-validator';//->có hàm body -> truy xuất các fiel trong data gửi đi
-import { USERS } from "../../../config/constant.js"; 
+import { GENDER, USERS } from "../../../config/constant.js"; 
 
 const validationsStoreOrUpdateUser = [
     body('name').custom( async  nameValue => {// method custom: kiểm tra dữ liệu
@@ -24,7 +24,9 @@ const validationsStoreOrUpdateUser = [
             throw new Error('Số điện thoại không được ít hơn 10 ký tự')
         }
     }),
-    body('level').isIn(Object.values(USERS.level)).withMessage('Giá trị đã chọn trong trường phân quyền không hợp lệ.'),
+    body('level').isIn(Object.values(USERS.level)).withMessage('Giá trị đã chọn trong trường phân quyền level không hợp lệ.'),
+    body('gender').isIn(Object.values(GENDER.gen)).withMessage('Giá trị đã chọn trong trường phân quyền gender không hợp lệ.'),
+
     body('email').custom( async  emailValue => {
         if (typeof emailValue !== 'string') {
             throw new Error('Email phải là kiểu chuỗi');

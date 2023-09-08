@@ -11,7 +11,7 @@ class AuthController {
     async login(req, res) {
         const {phone, password} = req.body;
         const user = await AuthController.userService.findByPhone(phone);
-
+     
         if (!user) {
             return responseJsonByStatus(
                 res, 

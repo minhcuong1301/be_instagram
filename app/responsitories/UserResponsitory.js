@@ -13,6 +13,7 @@ class UserResponsitory extends BaseResponsitory{
         return await User.findOne({phone})
     }
     
+    
 }
 
 export default UserResponsitory;

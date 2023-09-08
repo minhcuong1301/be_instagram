@@ -1,6 +1,7 @@
 import { hashHmacString } from "../common/helper";
 import User from "../models/user";
 import userResponsitory from "../responsitories/UserResponsitory.js";
+import BaseResponsitory from "../responsitories/BaseResponsitory";
 class userService{
     constructor(){
         this.userResponsitory = new userResponsitory();
@@ -20,7 +21,10 @@ class userService{
 
         return await this.userResponsitory.update(passUpdate,user.id,user.id);
     }
-    
+    async show (userId)
+  {
+    return await this.userResponsitory.findById(userId);
+  }
     async store(dataUser, userId){
         if(!dataUser.password){
             dataUser.password = hashHmacString('12345678');
@@ -40,7 +44,7 @@ class userService{
     }
     
     async destroy(id){
-        return await this.userResponsitory.destroy(id)
+        return await this.userResponsitory.delete(id)
     }
 
     async getListWithPaginate(limit=10, page=1, params={}){

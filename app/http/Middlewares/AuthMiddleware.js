@@ -11,7 +11,9 @@ const authMiddleware = async(req, res, next)=>{
 
     try {
         const userId = responseToken.payload.id;
+
         const user = await User.findById(userId);
+  
         if(!user){
             return responseJsonByStatus(
                 res,

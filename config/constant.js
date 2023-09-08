@@ -11,7 +11,12 @@ export const USERS = {
         false: 2
     }
 }
-
+export const GENDER={
+    gen:{
+        male:1,
+        female:0
+    }
+}
 export const STORAGE_PATHS = {
     importUsers: './storage/users/imports/',
     uploadAvatarUser: './storage/users/avatars/'
