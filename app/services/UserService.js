@@ -22,7 +22,9 @@ class userService{
         return await this.userResponsitory.update(passUpdate,user.id,user.id);
     }
     async show (userId)
+
   {
+    console.log(userId);
     return await this.userResponsitory.findById(userId);
   }
     async store(dataUser, userId){

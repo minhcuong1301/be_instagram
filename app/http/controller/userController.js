@@ -45,14 +45,28 @@ class userController{
         }
     }
     async show(req, res){
-    
-        userController.userService.show(req.params.userId)
-        .then(
-          user => responseJsonByStatus(res, responseSuccess(user))
-        )
-        .catch(
-          e => responseJsonByStatus(res, responseErrors(500, e.message), 500)
-        );
+        try{
+            const userId=req.params;
+            const user= await userController.userService.findById(userId.userId);
+            console.log(user);
+            if(!user){
+                return responseJsonByStatus(
+                    res,
+                    responseErrors(400,'khong tim thay user can show')
+                )
+            }
+            
+            return responseJsonByStatus(
+                res,
+                responseSuccess(user)
+            )
+        } catch(e){
+            return responseJsonByStatus(
+                res,
+                responseErrors(500, e.message)
+            )
+        }
+
         
     }
     async index (req, res){

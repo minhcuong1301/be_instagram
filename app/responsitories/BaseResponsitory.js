@@ -10,9 +10,12 @@ class BaseResponsitory{
     setModel(model){
         this.model=model;
     }
+    // async findById(id){
+    //     console.log(1,id);
+    //     return this.getModel().findOne({ _id: id})
+    // }
     async findById(id){
-        return this.getModel().findOne({ _id: id,
-            deleted_at: null})
+        return this.getModel().findById(id)
     }
     async store(data, createdById= null){
         if(createdById){

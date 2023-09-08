@@ -33,7 +33,12 @@ export const USER_IMPORTS = {
         false: 2,
     },
 }
-
+export const TYPE_POST={
+    type:{
+        public:1,
+        private:0
+    }
+}
 export const JOB_QUEUES = {
     userImports: 'user-imports'
 }
