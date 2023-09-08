@@ -21,9 +21,15 @@ class BaseResponsitory{
         return await this.getModel().create(data);
     }
     async update(data, id, updateById){
+        console.log(0,data, updateById);
         if(updateById){
+            console.log(3,data);
+
             data.update_id = updateById;
+            console.log(2,data);
+
         }
+        console.log(1,data);
         const dataUpdate = await this.getModel().findByIdAndUpdate(
             id,
             data

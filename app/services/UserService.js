@@ -37,8 +37,8 @@ class userService{
 
     async update(dataUser, userId, authUserId){
         return await this.userResponsitory.update(
-            userId,
             dataUser,
+            userId,
             authUserId
         );
     }

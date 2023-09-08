@@ -30,8 +30,9 @@ class userController{
         try{
             const { userId } = req.params;
             const data = { ...req.body };
+            console.log(data);
             const userUpdated = await userController.userService.update(data, userId, res.locals.authUser._id)
-
+            console.log(userUpdated);
             return responseJsonByStatus(
                 res,
                 responseSuccess(userUpdated)
@@ -80,40 +81,40 @@ class userController{
     }
     async destroy(req,res){
     
-    //     userController.userService.destroy(req.params.userId)
-    //   .then(
-    //     () => responseJsonByStatus(res, responseSuccess(true))
-    //   ).catch(
-    //     e => responseJsonByStatus(res, responseErrors(500, e.message), 500)
-    //   );
-    try{
-        const userId = req.body;
-        console.log(userId);
-        if(await userController.userService.findById(userId)===null){
-            return responseJsonByStatus(
-                res,
-                responseErrors(400,'khong tim thay user can xoa')
-            )
-        }
-        const userDeleted = await userController.userService.destroy(userId)
+        userController.userService.destroy(req.params.userId)
+      .then(
+        () => responseJsonByStatus(res, responseSuccess(true))
+      ).catch(
+        e => responseJsonByStatus(res, responseErrors(500, e.message), 500)
+      );
+    // try{
+    //     const userId = req.body;
+    //     console.log(userId);
+    //     if(await userController.userService.findById(userId)===null){
+    //         return responseJsonByStatus(
+    //             res,
+    //             responseErrors(400,'khong tim thay user can xoa')
+    //         )
+    //     }
+    //     const userDeleted = await userController.userService.destroy(userId)
 
-        if(userDeleted.deletedCount===0){
-            return responseJsonByStatus(
-                res,
-                responseErrors(400,'xoa User that bai')
-            )
-        }
+    //     if(userDeleted.deletedCount===0){
+    //         return responseJsonByStatus(
+    //             res,
+    //             responseErrors(400,'xoa User that bai')
+    //         )
+    //     }
 
-        return responseJsonByStatus(
-            res,
-            responseSuccess(200, 'Xoa user thanh cong')
-        )
-    } catch(e){
-        return responseJsonByStatus(
-            res,
-            responseErrors(500, e.message)
-        )
-    }
+    //     return responseJsonByStatus(
+    //         res,
+    //         responseSuccess(200, 'Xoa user thanh cong')
+    //     )
+    // } catch(e){
+    //     return responseJsonByStatus(
+    //         res,
+    //         responseErrors(500, e.message)
+    //     )
+    // }
 
     }
 }
