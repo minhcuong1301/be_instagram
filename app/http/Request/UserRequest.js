@@ -24,8 +24,8 @@ const validationsStoreOrUpdateUser = [
             throw new Error('Số điện thoại không được ít hơn 10 ký tự')
         }
     }),
-    body('level').isIn(Object.values(USERS.level)).withMessage('Giá trị đã chọn trong trường phân quyền level không hợp lệ.'),
-    body('gender').isIn(Object.values(GENDER.gen)).withMessage('Giá trị đã chọn trong trường phân quyền gender không hợp lệ.'),
+    // body('level').isIn(Object.values(USERS.level)).withMessage('Giá trị đã chọn trong trường phân quyền level không hợp lệ.'),
+    // body('gender').isIn(Object.values(GENDER.gen)).withMessage('Giá trị đã chọn trong trường phân quyền gender không hợp lệ.'),
 
     body('email').custom( async  emailValue => {
         if (typeof emailValue !== 'string') {
@@ -40,10 +40,10 @@ const validationsStoreOrUpdateUser = [
 ];
 //console.log(validationsStoreOrUpdateUser);
 const validationsIndexUser=[
-    query('limit').isNumeric().withMessage('limit phai la so'),
-    query('page').isNumeric(),
-    query('level').isIn(Object.values(USERS.level))
-        .withMessage('giá trị đã chọn trong trường không hợp lệ').optional(), //isIn đầu vào là một array
+    // query('limit').isNumeric().withMessage('limit phai la so'),
+    // query('page').isNumeric(),
+    // query('level').isIn(Object.values(USERS.level))
+    //     .withMessage('giá trị đã chọn trong trường không hợp lệ').optional(), //isIn đầu vào là một array
     // query('limit').optional().isNumeric().withMessage('limit phai la so'),
     // query('page').optional().isNumeric()
     // optional() : dành cho các thuộc tính không bắt buộc, nếu có sẽ thực hiện các hàm tiếp theo,

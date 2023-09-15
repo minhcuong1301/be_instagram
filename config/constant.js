@@ -2,9 +2,9 @@ export const DEFAULT_PASWORD = '123456';
 
 export const USERS = {
     level: {
-        super_admin: 1,
-        admin: 2,
-        user: 3
+     
+        admin: 1,
+        user: 2
     },
     is_confirm_account: {
         true: 1,
@@ -45,7 +45,7 @@ export const JOB_QUEUES = {
 
 export const PAGINATE_OPTIONS = {
     page: 1,
-    limit: 20,
+    limit: 10,
     sort: {
         created_at: -1
     },
