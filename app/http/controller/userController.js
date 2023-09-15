@@ -40,7 +40,7 @@ class userController{
         } catch(e){
             return responseJsonByStatus(
                 res,
-                responseErrors(500, e.message)
+                responseErrors(400, "update khong thanh cong")
             )
         }
     }
@@ -66,8 +66,6 @@ class userController{
                 responseErrors(500, e.message)
             )
         }
-
-        
     }
     async index (req, res){
         try{

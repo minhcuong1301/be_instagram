@@ -28,7 +28,7 @@ class AuthController {
             );
         }
         
-        if(user.level===3){
+        if(user.level===2){
             return responseJsonByStatus(
                 res, 
                 responseErrors(401,'Bạn không có quyền đăng nhập vào fe admin'),
