@@ -26,6 +26,8 @@ const postRouter=(app)=>{
     router.get('',postController.getAllPosts);
     router.get('/:postId', postController.show);
     router.put('/:postId', postController.update);
+    router.delete('/:postId', postController.delete);
+
     app.use('/posts',router);
 }
 export default postRouter;

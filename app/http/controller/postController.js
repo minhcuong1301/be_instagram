@@ -81,7 +81,59 @@ class postController {
         }
     }
     async update(req,res){
-        
+        const postId = req.params.postId;
+        const { caption, type } = req.body;
+        const images = req.files;
+    
+        try {
+            const post = await Post.findOne({ _id: postId }).populate([
+                'images',
+                'videos'
+            ]);
+    
+            if (!post) {
+                return responseJsonByStatus(res, responseErrors(404, "Không tìm thấy bài viết"));
+            }
+    
+            // Cập nhật các trường của bài viết
+            post.caption = caption;
+            post.type = type;
+    
+            // Cập nhật hình ảnh nếu cần
+            if (images && images.length > 0) {
+                const newImages = images.map((image) => ({
+                    post_id: postId,
+                    url: image.filename,
+                }));
+    
+                // Xóa các hình ảnh cũ và thêm các hình ảnh mới
+                await Image.deleteMany({ post_id: postId });
+                await Image.insertMany(newImages);
+            }
+    
+            // Lưu bài viết đã được cập nhật
+            await post.save();
+    
+            return responseJsonByStatus(res, responseSuccess(post));
+        } catch (error) {
+            return responseJsonByStatus(res, responseErrors(500, error.message));
+        }
+    }
+    async delete(req, res) {
+        const postId = req.params.postId;
+    
+        try {
+            const post = await Post.findById(postId);
+
+            if (!post) {
+                return responseJsonByStatus(res, responseErrors(404, "Không tìm thấy bài viết"));
+            }
+            await Post.deleteOne({ _id: postId });
+    
+            return responseJsonByStatus(res, responseSuccess("Bài viết đã được xóa thành công"));
+        } catch (error) {
+            return responseJsonByStatus(res, responseErrors(500, error.message));
+        }
     }
 
 }
