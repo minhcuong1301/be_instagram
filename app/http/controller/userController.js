@@ -129,6 +129,21 @@ class userController{
     // }
 
     }
+    async createUser(req,res){
+    try{
+        const { phone, name, password } = req.body;
+        const user = new User({ phone, name, password });
+        await user.save();
+        return responseJsonByStatus(
+            res,
+            responseSuccess(user)
+        )
+    }
+    catch(e){
+        res.status(500).json({ message: 'Có lỗi xảy ra khi đăng ký tài khoản.' });
+    }
+        
+    }
 }
 
 export default userController;
